@@ -3,12 +3,13 @@ let run request =
   let info = String.split_on_char ' ' request in
   match info with
   | [lemma; parse] -> 
-    match (String.length parse) with
+    (match (String.length parse) with
     | 3 -> 
       let (tense, person, number) = makeparse parse in
       let features = Morph.VerbTag {person; number; tense} in
       Conj.generate lemma features 
-    | _ -> failwith "Ошибка!"
+    | _ -> failwith "Ошибка!")
+  | _ -> failwith "Ошибка!"
 and
   makeparse parse =
   let tense =

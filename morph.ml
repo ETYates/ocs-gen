@@ -20,17 +20,17 @@ and stem =
   | Verb of klass
   | Nominal of declension
 and klass =
-  | I_verb of string 
-  | E_verb of string
-  | Sha_verb of string
-  | Ja_verb of string
-  | Ova_verb of string
-  | Ca_verb of string
-  | No_verb of string
-  | C_verb of string
-  | Aj_verb of string
-  | Ej_verb of string
-  | J_verb of string
+  | I_verbb of string 
+  | E_verbb of string
+  | Sha_verbb of string
+  | Ja_verbb of string
+  | Ova_verbb of string
+  | Ca_verbb of string
+  | No_verbb of string
+  | C_verbb of string
+  | Aj_verbb of string
+  | Ej_verbb of string
+  | J_verbb of string
 and case =
   | Nominative
   | Genitive
@@ -59,51 +59,51 @@ and gender =
 let classify stem =
   let stemcs = Phon.explode stem in
   match stemcs with
-  | cs::'i'             -> I_verb stem
-  | cs::'ě'             -> E_verb stem
-  | cs::'č'::'a'        -> Sha_verb stem
-  | cs::'ž'::'a'        -> Sha_verb stem
-  | cs::'š'::'a'        -> Sha_verb stem
-  | cs::'š'::'t'::'a'   -> Sha_verb stem
-  | cs::'ž'::'d'::'a'ؤ  -> Sha_verb stem
-  | cs::'j'::'a'        -> Ja_verb stem
-  | cs::'v'::'a'        -> Ova_verb stem
-  | cs::'n'::'ǫ'        -> No_verb stem
-  | cs::'k'::'a'        -> Ca_verb stem
-  | cs::'t'::'a'        -> Ca_verb stem
-  | cs::'z'::'a'        -> Ca_verb stem
-  | cs::'l'::'a'        -> Ca_verb stem
-  | cs::'ẑ'::'a'        -> Ca_verb stem
-  | cs::'m'::'a'        -> Ca_verb stem
-  | cs::'x'::'a'        -> Ca_verb stem
-  | cs::'d'::'a'        -> Ca_verb stem
-  | cs::'b'::'a'        -> Ca_verb stem
-  | cs::'z'::'a'        -> Ca_verb stem
-  | cs::'p'::'a'        -> Ca_verb stem
-  | cs::'c'::'a'        -> Ca_verb stem
-  | cs::'g'::'a'        -> Ca_verb stem
-  | cs::'s'::'a'        -> Ca_verb stem
-  | cs::'n'::'a'        -> Ca_verb stem
-  | cs::'a'::'j'        -> Aj_verb stem
-  | cs::'ě'::'j'        -> Ej_verb stem
-  | cs::'j'             -> J_verb stem
-  | cs::'r'             -> C_verb stem
-  | cs::'t'             -> C_verb stem
-  | cs::'p'             -> C_verb stem
-  | cs::'š'             -> C_verb stem
-  | cs::'ž'             -> C_verb stem
-  | cs::'s'             -> C_verb stem
-  | cs::'d'             -> C_verb stem
-  | cs::'f'             -> C_verb stem
-  | cs::'g'             -> C_verb stem
-  | cs::'h'             -> C_verb stem
-  | cs::'k'             -> C_verb stem
-  | cs::'l'             -> C_verb stem
-  | cs::'č'             -> C_verb stem
-  | cs::'z'             -> C_verb stem
-  | cs::'x'             -> C_verb stem
-  | cs::'c'             -> C_verb stem
-  | cs::'v'             -> C_verb stem
-  | cs::'b'             -> C_verb stem
-  | cs::'n'             -> C_verb stem
-  | cs::'m'             -> C_verb stem
+  | cs::'i'             -> I_verb
+  | cs::'ě'             -> E_verb
+  | cs::'č'::'a'        -> Sha_verb
+  | cs::'ž'::'a'        -> Sha_verb
+  | cs::'š'::'a'        -> Sha_verb
+  | cs::'š'::'t'::'a'   -> Sha_verb
+  | cs::'ž'::'d'::'a'ؤ  -> Sha_verb
+  | cs::'j'::'a'        -> Ja_verb
+  | cs::'v'::'a'        -> Ova_verb
+  | cs::'n'::'ǫ'        -> No_verb
+  | cs::'k'::'a'        -> Ca_verb
+  | cs::'t'::'a'        -> Ca_verb
+  | cs::'z'::'a'        -> Ca_verb
+  | cs::'l'::'a'        -> Ca_verb
+  | cs::'ẑ'::'a'        -> Ca_verb
+  | cs::'m'::'a'        -> Ca_verb
+  | cs::'x'::'a'        -> Ca_verb
+  | cs::'d'::'a'        -> Ca_verb
+  | cs::'b'::'a'        -> Ca_verb
+  | cs::'z'::'a'        -> Ca_verb
+  | cs::'p'::'a'        -> Ca_verb
+  | cs::'c'::'a'        -> Ca_verb
+  | cs::'g'::'a'        -> Ca_verb
+  | cs::'s'::'a'        -> Ca_verb
+  | cs::'n'::'a'        -> Ca_verb
+  | cs::'a'::'j'        -> Aj_verb
+  | cs::'ě'::'j'        -> Ej_verb
+  | cs::'j'             -> J_verb
+  | cs::'r'             -> C_verb
+  | cs::'t'             -> C_verb
+  | cs::'p'             -> C_verb
+  | cs::'š'             -> C_verb
+  | cs::'ž'             -> C_verb
+  | cs::'s'             -> C_verb
+  | cs::'d'             -> C_verb
+  | cs::'f'             -> C_verb
+  | cs::'g'             -> C_verb
+  | cs::'h'             -> C_verb
+  | cs::'k'             -> C_verb
+  | cs::'l'             -> C_verb
+  | cs::'č'             -> C_verb
+  | cs::'z'             -> C_verb
+  | cs::'x'             -> C_verb
+  | cs::'c'             -> C_verb
+  | cs::'v'             -> C_verb
+  | cs::'b'             -> C_verb
+  | cs::'n'             -> C_verb
+  | cs::'m'             -> C_verb

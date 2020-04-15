@@ -60,7 +60,7 @@ and
   String.concat "" strs 
 and 
   phonemize c = 
-  match c with
+  (match c with
   | "i" -> Vowel { back=false
                  ; high=true
                  ; tense=true
@@ -367,4 +367,4 @@ and
                      ; velar=true
                      ; voice=false
                      ; glyph="x"
-                     }
+                     })

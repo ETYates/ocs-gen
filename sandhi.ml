@@ -1,10 +1,10 @@
 
-type change = Rule of { inn : Phon.Phoneme
-                      ; out : Phon.Phoneme
+type change = Rule of { inn : Phon.phoneme
+                      ; out : Phon.phoneme
                       ; context : context 
                       }
-and context = Locus of { bfr : Phon.Phoneme
-                       ; aftr : Phon.Phoneme
+and context = Locus of { bfr : Phon.phoneme
+                       ; aftr : Phon.phoneme
                        }
 
 let sandhi stem ending = 

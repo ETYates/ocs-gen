@@ -39,7 +39,8 @@ let _ =
   let instr = ref (read_line ()) in
   while (String.compare !instr "q") != 0
     do
-      Printf.printf "[%s] => %s\n" !instr (run !instr);
-      instr := read_line ()
+      if (String.compare !instr "") != 0 then
+        Printf.printf "[%s] => %s\n" !instr (run !instr);
+        instr := read_line ()
     done
 

@@ -3,5 +3,10 @@
 
 ## Building
 ```
-$ dune build ./src/test.exe
+$ make
+```
+
+## Testing
+```
+$ make test
 ```

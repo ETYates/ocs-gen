@@ -7,14 +7,17 @@ type parse =
                ; number : number
                ; gender : gender
                }
-and conjugation =
+
+let conjugation =
   | Consonantal
   | Vocalic
-and declension =
+
+let declension =
   | Twofold
   | Pronominal
   | Compound
-and klass =
+
+let klass =
   | I_verb of string
   | E_verb of string
   | Sha_verb of string
@@ -26,31 +29,37 @@ and klass =
   | Aj_verb of string
   | Ej_verb of string
   | J_verb of string
-and stem =
+
+let stem =
   | Verb of klass
   | Nominal of declension
-and case =
+
+let case =
   | Nominative
   | Genitive
   | Dative
   | Accusative
   | Instrumental
   | Prepositional
-and person =
+
+let person =
   | First
   | Second
   | Third
-and tense =
+
+let tense =
   | Present 
   | Past
   | Imperative
   | Imperfect
   | Aorist
-and number =
+
+let number =
   | Singular
   | Dual
   | Plural
-and gender =
+
+let gender =
   | Masculine
   | Feminine
   | Neuter

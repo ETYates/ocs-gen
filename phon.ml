@@ -58,7 +58,7 @@ let toString ps =
   let strs = List.map phonize ps in
   String.concat "" strs
 
-and phonemize c =
+let phonemize c =
   match c with
   | "i" -> Vowel { back=false
                 ; high=true

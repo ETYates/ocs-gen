@@ -26,8 +26,7 @@ let explode s =
   let rec repeat i =
     match i = n with
     | true -> []
-    | false -> s.[i] :: repeat (i + 1)
-    in
+    | false -> s.[i] :: repeat (i + 1) in
   repeat 0
 
 let implode chars =
@@ -37,8 +36,7 @@ let implode chars =
     | [] -> res
     | char :: chars ->
       Bytes.set res i char;
-      repeat (i + 1) chars
-  in
+      repeat (i + 1) chars in
   Bytes.to_string (repeat 0 chars)
 
 let process s =
@@ -56,8 +54,7 @@ let toString ps =
   let phonize p =
     match p with
     | Vowel {glyph=g; _} -> g
-    | Consonant {glyph=g; _} -> g
-    in
+    | Consonant {glyph=g; _} -> g in
   let strs = List.map phonize ps in
   String.concat "" strs
 

@@ -1,23 +1,13 @@
-type parse =
-  | VerbTag of { person : person
-               ; number : number
-               ; tense : tense
-               }
-  | NounTag of { case : case
-               ; number : number
-               ; gender : gender
-               }
-
-let conjugation =
+type conjugation =
   | Consonantal
   | Vocalic
 
-let declension =
+type declension =
   | Twofold
   | Pronominal
   | Compound
 
-let klass =
+type klass =
   | I_verb of string
   | E_verb of string
   | Sha_verb of string
@@ -30,11 +20,11 @@ let klass =
   | Ej_verb of string
   | J_verb of string
 
-let stem =
+type stem =
   | Verb of klass
   | Nominal of declension
 
-let case =
+type case =
   | Nominative
   | Genitive
   | Dative
@@ -42,27 +32,37 @@ let case =
   | Instrumental
   | Prepositional
 
-let person =
+type person =
   | First
   | Second
   | Third
 
-let tense =
+type tense =
   | Present
   | Past
   | Imperative
   | Imperfect
   | Aorist
 
-let number =
+type number =
   | Singular
   | Dual
   | Plural
 
-let gender =
+type gender =
   | Masculine
   | Feminine
   | Neuter
+
+type parse =
+  | VerbTag of { person : person
+               ; number : number
+               ; tense : tense
+               }
+  | NounTag of { case : case
+               ; number : number
+               ; gender : gender
+               }
 
 let klassToString k =
   match k with

@@ -48,7 +48,7 @@ let person =
   | Third
 
 let tense =
-  | Present 
+  | Present
   | Past
   | Imperative
   | Imperfect
@@ -66,17 +66,17 @@ let gender =
 
 let klassToString k =
   match k with
-  | I_verb s -> s
-  | E_verb s -> s
+  | I_verb s   -> s
+  | E_verb s   -> s
   | Sha_verb s -> s
-  | Ja_verb s -> s
+  | Ja_verb s  -> s
   | Ova_verb s -> s
-  | Ca_verb s -> s
-  | No_verb s -> s
-  | C_verb s -> s
-  | Aj_verb s -> s
-  | Ej_verb s -> s
-  | J_verb s -> s
+  | Ca_verb s  -> s
+  | No_verb s  -> s
+  | C_verb s   -> s
+  | Aj_verb s  -> s
+  | Ej_verb s  -> s
+  | J_verb s   -> s
 
 let classify stem =
   match List.rev (Phon.explode stem) with

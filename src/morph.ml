@@ -123,7 +123,7 @@ let classify stem =
   | 't'::_                         -> C_verb stem
   | 'p'::_                         -> C_verb stem
   (*| 'š'::_                       -> C_verb stem*)
-  |  '\xa1'::'\xc5'::_             -> C_verb stem
+  | '\xa1'::'\xc5'::_              -> C_verb stem
   (*| 'ž'::_                       -> C_verb stem*)
   | '\xbe'::'\xc5'::_              -> Sha_verb stem
   | 's'::_                         -> C_verb stem

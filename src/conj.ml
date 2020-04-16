@@ -4,7 +4,11 @@ let stemverb lemma =
   match lemma with
   | "i"::"t"::stem      -> String.concat "" (List.rev stem)
   | "ъ"::"t"::"ǫ"::stem -> String.concat "" (List.rev stem)
-  | _ -> failwith "Oopsie in stemverb"
+  | _ -> 
+    let stemverb =
+      List.rev lemma
+      |> String.concat "" in
+    failwith ("Oopsie in stemverb: " ^ stemverb)
 
 let fetchVerb psn num tns =
   match Hashtbl.find_opt verbTbl (tns, psn, num) with

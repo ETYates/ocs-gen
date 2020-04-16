@@ -1,21 +1,23 @@
-
-
 type elem = Test of { lemma : string
-                   ; parse : string
-                   ; form : string
-                   }
+                    ; parse : string
+                    ; form : string
+                    }
 
-
-let read_file filename =
-  let lines = ref [] in
-  let chan = open_in filename in
-  try
-    while true; do
-      lines := input_line chan :: !lines
-    done; !lines
-  with End_of_file ->
-    close_in chan;
-    List.rev !lines
+(**
+ * [read_file] returns type string list.
+ * Read from the file of name `fn` line by line and return a list of strings
+ *)
+let read_file fn =
+  let ic = open_in fn in
+  let rec build_list l =
+    match input_line ic with
+    | line ->
+      line :: l
+      |> build_list
+    | exception End_of_file ->
+      close_in ic;
+      List.rev l in
+  build_list []
 
 
 let makeTest parastring =
@@ -40,4 +42,3 @@ let _ =
       | 0 -> Printf.printf "Test %s passed" lemma; [1]::(run ts) 
       | _ -> Printf.printf "Test %s failed" lemma; [0]::(run ts))) in
   run tests
-  

@@ -6,6 +6,7 @@ TEST_TXT=./tests/lunt.txt
 
 all:
 	$(CC) build $(OUTBIN)
+	cp ./_build/default/src/main.exe .
 
 run:
 	$(CC) exec $(OUTBIN)

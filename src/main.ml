@@ -10,7 +10,8 @@ let run request =
       let features = Morph.VerbTag {person; number; tense} in
       Conj.generate (Phon.process lemma) features
     | _ -> failwith "Ошибка!")
-  | _ -> failwith "Ошибка!"
+  | _ -> failwith "Ошибка!" 
+
 
 let _ =
   let usage_msg =
@@ -23,7 +24,7 @@ let _ =
   Arg.parse speclist (fun _ -> ()) usage_msg;
 
   match !testfile = "" with
-  | true ->
+  | true -> Printf.printf "\n\tOCS-GEN v. dev 0.1. Yates and Palleiko\n\n";
     let instr = ref (read_line ()) in
     while (String.compare !instr "q") != 0
       do

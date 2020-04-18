@@ -3,4 +3,4 @@ type elem = Test of { lemma : string
                     ; form : string
                     }
 
-val doTests : string -> unit
+val doTests : string -> bool -> unit

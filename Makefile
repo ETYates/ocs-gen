@@ -12,7 +12,10 @@ run:
 	$(CC) exec $(OUTBIN)
 
 test:
-	$(CC) exec -- $(OUTBIN) -t $(TEST_TXT)
+	$(CC) exec -- $(OUTBIN) -t $(TEST_TXT) $@
+
+benchmark:
+	$(CC) exec -- $(OUTBIN) -t $(TEST_TXT) -b
 
 clean:
 	rm -rf _build/

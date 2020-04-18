@@ -1,3 +1,4 @@
+let benchmark = ref false
 let testfile = ref ""
 
 let run request =
@@ -19,6 +20,8 @@ let _ =
   let speclist = [
     ("-t", Arg.Set_string testfile,
       "Set the testing flag");
+    ("-b", Arg.Set benchmark,
+     "Set the testing benchmark flag");
   ] in
 
   Arg.parse speclist (fun _ -> ()) usage_msg;
@@ -33,4 +36,15 @@ let _ =
           instr := read_line ()
       done
   | false ->
-    Test.doTests !testfile
+    begin
+      match !benchmark with
+      | false -> Test.doTests !testfile false
+      | true -> 
+        let rec loop i =
+          match i = 0 with
+          | false -> 
+            Test.doTests !testfile true;
+            loop (i - 1)
+          | true -> () in
+        loop 10000
+    end

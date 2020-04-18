@@ -24,12 +24,12 @@ let _ =
   Arg.parse speclist (fun _ -> ()) usage_msg;
 
   match !testfile = "" with
-  | true -> Printf.printf "\n\tOCS-GEN v. dev 0.1. Yates and Palleiko\n\n";
+  | true -> Printf.printf "\n\tOCS-GEN v. dev 0.1. Yates and Palleiko\n\n> ";
     let instr = ref (read_line ()) in
     while (String.compare !instr "q") != 0
       do
         if (String.compare !instr "") != 0 then
-          Printf.printf "[%s] -> %s\n" !instr (run !instr);
+          Printf.printf "[%s] -> %s\n> " !instr (run !instr);
           instr := read_line ()
       done
   | false ->

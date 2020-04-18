@@ -3,12 +3,10 @@ let verbTbl = Hashtbl.create 100
 let stemverb lemma =
   match lemma with
   | "i"::"t"::stem      -> String.concat "" (List.rev stem)
-  | "ъ"::"t"::"ǫ"::stem -> String.concat "" (List.rev stem)
-  | _ -> 
-    let stemverb =
-      List.rev lemma
-      |> String.concat "" in
-    failwith ("Oopsie in stemverb: " ^ stemverb)
+  | _ -> let lem = String.concat "" (List.rev lemma) in
+         let stemlen = ((String.length lem) - 4) in
+         let st = String.sub lem 0 stemlen in
+         st
 
 let fetchVerb psn num tns =
   match Hashtbl.find_opt verbTbl (tns, psn, num) with

@@ -34,7 +34,7 @@ let doTests file =
     (match ts with
     | [] -> ()
     | (Test {lemma; parse; form}) :: ts ->
-      Printf.printf "Attempting test [%s %s]\n" lemma parse;
+      Printf.printf "Run test '%s' '%s' '%s' -> " lemma parse form;
       let (tense, person, number) = Parse.makeparse parse in
       let newlem = Phon.process lemma in
       (* Prtinf.printf "%s %s %s\n" *)
@@ -42,10 +42,10 @@ let doTests file =
       let src = Conj.generate newlem realparse in
       begin
         match (String.compare src form) with
-        | 0 -> Printf.printf "Test '%s %s' passed\n" lemma parse;
+        | 0 -> Printf.printf "[%s] passed\n" src;
           run ts
            (* [1]::(run ts) *)
-        | _ -> Printf.printf "Test '%s %s' failed\n" lemma parse;
+        | _ -> Printf.printf "[%s] failed\n" src;
           run ts
           (* [0]::(run ts)) *)
       end

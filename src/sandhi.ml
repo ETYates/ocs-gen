@@ -7,4 +7,4 @@ and context = Locus of { bfr : Phon.phoneme
                        }
 
 let sandhi (stem : Morph.klass) ending =
-  String.concat "+" ((Morph.klassToString stem)::(ending)::[]) 
+  String.concat "+" ((Morph.klassToString stem)::ending::[]) 

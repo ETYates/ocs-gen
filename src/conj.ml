@@ -4,7 +4,7 @@ let stemverb lemma =
   match lemma with
   | "i"::"t"::stem      -> String.concat "" (List.rev stem)
   | _ -> let lem = String.concat "" (List.rev lemma) in
-         let stemlen = ((String.length lem) - 4) in
+         let stemlen = ((String.length lem) - 5) in
          let st = String.sub lem 0 stemlen in
          st
 

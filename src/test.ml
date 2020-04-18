@@ -21,10 +21,12 @@ let readFile fn =
 
 
 let makeTest parastring =
-  Printf.printf "%s\n" parastring;
+  (* Printf.printf "%s\n" parastring; *)
   let info = String.split_on_char ' ' parastring in
   match info with
-  | [lemma; parse; form] -> Test {lemma; parse; form}
+  | [lemma; parse; form] -> 
+    let form = String.trim form in
+    Test {lemma; parse; form }
   | _ -> failwith "Incorrect test input."
 
 let doTests file =

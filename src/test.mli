@@ -1,4 +1,5 @@
-type elem = Test of { lemma : string
+type elem = Test of { id : int 
+                    ; lemma : string
                     ; parse : string
                     ; form : string
                     }

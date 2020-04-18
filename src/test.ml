@@ -1,4 +1,5 @@
-type elem = Test of { lemma : string
+type elem = Test of { id : int 
+                    ; lemma : string
                     ; parse : string
                     ; form : string
                     }
@@ -20,18 +21,19 @@ let readFile fn =
   build_list []
 
 
-let makeTest parastring =
+let makeTest id parastring =
   (* Printf.printf "%s\n" parastring; *)
   let info = String.split_on_char ' ' parastring in
   match info with
   | [lemma; parse; form] -> 
     let form = String.trim form in
-    Test {lemma; parse; form }
+    Test {id; lemma; parse; form }
   | _ -> failwith "Incorrect test input."
 
-let log benchmark lemma parse form src passed =
+let log benchmark testID lemma parse form src passed =
   if not benchmark then
-      Printf.printf "Run test '%s' '%s' '%s' -> [%s] %s\n"
+      Printf.printf "%03d | Run test '%s' '%s' '%s' -> [%s] %s\n"
+        testID
         lemma
         parse
         form
@@ -40,11 +42,11 @@ let log benchmark lemma parse form src passed =
 
 let doTests file benchmark =
   let paradigms = readFile file in
-  let tests = List.map makeTest paradigms in
+  let tests = List.mapi makeTest paradigms in
   let rec run ts =
     (match ts with
     | [] -> ()
-    | (Test {lemma; parse; form}) :: ts ->
+    | (Test {id; lemma; parse; form}) :: ts ->
       let (tense, person, number) = Parse.makeparse parse in
       let newlem = Phon.process lemma in
       (* Prtinf.printf "%s %s %s\n" *)
@@ -53,11 +55,11 @@ let doTests file benchmark =
       begin
         match (String.compare src form) with
         | 0 ->
-          log benchmark lemma parse form src "passed";
+          log benchmark id lemma parse form src "passed";
           run ts
            (* [1]::(run ts) *)
         | _ ->
-          log benchmark lemma parse form src "failed";
+          log benchmark id lemma parse form src "failed";
           run ts
           (* [0]::(run ts)) *)
       end

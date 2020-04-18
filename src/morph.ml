@@ -142,4 +142,4 @@ let classify stem =
   | 'b'::_                         -> C_verb stem
   | 'n'::_                         -> C_verb stem
   | 'm'::_                         -> C_verb stem
-  | _ -> failwith "Invalid char string"
+  | _ -> failwith ("Invalid char string: " ^ stem)

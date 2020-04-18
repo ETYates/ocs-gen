@@ -17,7 +17,7 @@ let generate lemma (parse : Morph.parse) =
   match parse with
   | Morph.VerbTag {person; number; tense} ->
     let stemstr = stemverb lemma in
-    let stem = Morph.classify stemstr in
+    let stem = Morph.classifyTbl stemstr in
     let ending = fetchVerb person number tense in
     Sandhi.sandhi stem ending
   | _ -> "Ошибка! Нет имменых."

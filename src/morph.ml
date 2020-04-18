@@ -1,3 +1,5 @@
+let classificationTbl = Hashtbl.create 60
+
 type conjugation =
   | Consonantal
   | Vocalic
@@ -143,3 +145,121 @@ let classify stem =
   | 'n'::_                         -> C_verb stem
   | 'm'::_                         -> C_verb stem
   | _ -> failwith ("Invalid char string: " ^ stem)
+
+let slice l idx =
+  let rec loop acc i = function
+    | hd :: tl ->
+      if i = 0 then
+        acc
+      else
+        loop (hd :: acc) (i - 1) tl
+    | [] -> List.rev acc in
+  loop [] idx l
+
+
+let classifyTbl stem =
+  let retClassification = function
+    | `I_verb -> I_verb stem
+    | `E_verb -> E_verb stem
+    | `Sha_verb -> Sha_verb stem
+    | `Ja_verb -> Ja_verb stem
+    | `Ova_verb -> Ova_verb stem
+    | `Ca_verb -> Ca_verb stem
+    | `No_verb -> No_verb stem
+    | `C_verb -> C_verb stem
+    | `Aj_verb -> Aj_verb stem
+    | `Ej_verb -> Ej_verb stem
+    | `J_verb -> J_verb stem in
+
+  let s = List.rev (Phon.explode stem) in
+  let last4 = slice s 4 in
+  List.iter (fun c -> Printf.printf "%x " (Char.code c)) last4;
+  Printf.printf "\n";
+  match Hashtbl.find_opt classificationTbl last4 with
+  | Some t -> retClassification t
+  | None ->
+    begin
+      let last3 = slice s 3 in
+      match Hashtbl.find_opt classificationTbl last3 with
+        | Some t -> retClassification t
+        | None ->
+          begin
+            let last2 = slice s 2 in
+            match Hashtbl.find_opt classificationTbl last2 with
+              | Some t -> retClassification t
+              | None ->
+                begin
+                  let last1 = slice s 1 in
+                  match Hashtbl.find_opt classificationTbl last1 with
+                    | Some t -> retClassification t
+                    | None -> failwith ("Invalid char string: " ^ stem)
+                end
+
+          end
+    end
+
+let _ =
+  (*| 'a'; 'č'; _                  -> Sha_verb stem*)
+  Hashtbl.add classificationTbl ['a'; '\x8d'; '\xc4'] `Sha_verb;
+  (*| 'a'; 'ž'; _                  -> Sha_verb stem*)
+  Hashtbl.add classificationTbl ['a'; '\xbe'; '\xc5'] `Sha_verb;
+  (*| 'a'; 'š'; _                  -> Sha_verb stem*)
+  Hashtbl.add classificationTbl ['a'; '\xa1'; '\xc5'] `Sha_verb;
+  (*| 'a'; 't'; 'š'; _             -> Sha_verb stem*)
+  Hashtbl.add classificationTbl ['a'; 't'; '\xa1'; '\xc5'] `Sha_verb;
+  (*| 'a'; 'd'; 'ž'; _ؤ            -> Sha_verb stem*)
+  Hashtbl.add classificationTbl ['a'; 'd'; '\xbe'; '\xc5'] `Sha_verb;
+  Hashtbl.add classificationTbl ['a'; 'j'] `Ja_verb;
+  Hashtbl.add classificationTbl ['a'; 'v'] `Ova_verb;
+  (*| 'ǫ'; 'n'; _                  -> No_verb stem *)
+  Hashtbl.add classificationTbl ['\xab'; '\xc7'; 'n'] `No_verb;
+  Hashtbl.add classificationTbl ['a'; 'k'] `Ca_verb;
+  Hashtbl.add classificationTbl ['a'; 't'] `Ca_verb;
+  Hashtbl.add classificationTbl ['a'; 'z'] `Ca_verb;
+  Hashtbl.add classificationTbl ['a'; 'l'] `Ca_verb;
+  (*| 'a'; 'ẑ'; _                  -> Ca_verb stem *)
+  Hashtbl.add classificationTbl ['a'; '\x91'; '\xba'; '\xe1'] `Ca_verb;
+  Hashtbl.add classificationTbl ['a'; 'm'] `Ca_verb;
+  Hashtbl.add classificationTbl ['a'; 'x'] `Ca_verb;
+  Hashtbl.add classificationTbl ['a'; 'd'] `Ca_verb;
+  Hashtbl.add classificationTbl ['a'; 'b'] `Ca_verb;
+  Hashtbl.add classificationTbl ['a'; 'p'] `Ca_verb;
+  Hashtbl.add classificationTbl ['a'; 'c'] `Ca_verb;
+  Hashtbl.add classificationTbl ['a'; 'g'] `Ca_verb;
+  Hashtbl.add classificationTbl ['a'; 's'] `Ca_verb;
+  Hashtbl.add classificationTbl ['a'; 'n'] `Ca_verb;
+  Hashtbl.add classificationTbl ['j'; 'a'] `Aj_verb;
+  (*| 'j'; 'ě'; _                  -> Ej_verb stem *)
+  Hashtbl.add classificationTbl ['j'; '\x9b'; '\xc4'] `Ej_verb;
+  
+  
+  Hashtbl.add classificationTbl ['i'] `I_verb;
+  (*| 'ě'; _                       -> E_verb stem*)
+  (* Hashtbl.add classificationTbl ['\x9b'; '\xc4'] `E_verb; *)
+  Hashtbl.add classificationTbl ['\xc4'; '\x9b'] `E_verb;
+
+
+  Hashtbl.add classificationTbl ['j'] `J_verb;
+  Hashtbl.add classificationTbl ['r'] `C_verb;
+  Hashtbl.add classificationTbl ['t'] `C_verb;
+  Hashtbl.add classificationTbl ['p'] `C_verb;
+  (*| 'š'; _                       -> C_verb stem*)
+  Hashtbl.add classificationTbl ['\xa1'; '\xc5'] `C_verb;
+  (*| 'ž'; _                       -> C_verb stem*)
+  Hashtbl.add classificationTbl ['\xbe'; '\xc5'] `Sha_verb;
+  Hashtbl.add classificationTbl ['s'] `C_verb;
+  Hashtbl.add classificationTbl ['d'] `C_verb;
+  Hashtbl.add classificationTbl ['f'] `C_verb;
+  Hashtbl.add classificationTbl ['g'] `C_verb;
+  Hashtbl.add classificationTbl ['h'] `C_verb;
+  Hashtbl.add classificationTbl ['k'] `C_verb;
+  Hashtbl.add classificationTbl ['l'] `C_verb;
+  (*| 'č'; _                       -> C_verb stem*)
+  Hashtbl.add classificationTbl ['\x8d'; '\xc4'] `C_verb;
+  Hashtbl.add classificationTbl ['z'] `C_verb;
+  Hashtbl.add classificationTbl ['x'] `C_verb;
+  Hashtbl.add classificationTbl ['c'] `C_verb;
+  Hashtbl.add classificationTbl ['v'] `C_verb;
+  Hashtbl.add classificationTbl ['b'] `C_verb;
+  Hashtbl.add classificationTbl ['n'] `C_verb;
+  Hashtbl.add classificationTbl ['m'] `C_verb;

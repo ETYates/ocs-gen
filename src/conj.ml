@@ -24,7 +24,7 @@ let generate lemma (parse : Morph.parse) =
 
 let _ =
   let initVerbTbl =
-    Hashtbl.add verbTbl (Morph.Present,    Morph.First,  Morph.Singular) "0-ǫ";
+    Hashtbl.add verbTbl (Morph.Present,    Morph.First,  Morph.Singular) "ϵ-ǫ";
     Hashtbl.add verbTbl (Morph.Present,    Morph.Second, Morph.Singular) "e/i-ši";
     Hashtbl.add verbTbl (Morph.Present,    Morph.Third,  Morph.Singular) "e/i-tъ";
     Hashtbl.add verbTbl (Morph.Present,    Morph.First,  Morph.Dual)     "e/i-vě";
@@ -33,8 +33,8 @@ let _ =
     Hashtbl.add verbTbl (Morph.Present,    Morph.First,  Morph.Plural)   "e/i-mъ";
     Hashtbl.add verbTbl (Morph.Present,    Morph.Second, Morph.Plural)   "e/i-te";
     Hashtbl.add verbTbl (Morph.Present,    Morph.Third,  Morph.Plural)   "ǫ/ę-tъ";
-    Hashtbl.add verbTbl (Morph.Imperative, Morph.Second, Morph.Singular) "ě/i-0";
-    Hashtbl.add verbTbl (Morph.Imperative, Morph.Third,  Morph.Singular) "ě/i-0";
+    Hashtbl.add verbTbl (Morph.Imperative, Morph.Second, Morph.Singular) "ě/i-ϵ";
+    Hashtbl.add verbTbl (Morph.Imperative, Morph.Third,  Morph.Singular) "ě/i-ϵ";
     Hashtbl.add verbTbl (Morph.Imperative, Morph.First,  Morph.Dual)     "ě/i-vě";
     Hashtbl.add verbTbl (Morph.Imperative, Morph.Second, Morph.Dual)     "ě/i-ta";
     Hashtbl.add verbTbl (Morph.Imperative, Morph.First,  Morph.Plural)   "ě/i-mě";
@@ -49,8 +49,8 @@ let _ =
     Hashtbl.add verbTbl (Morph.Imperfect,  Morph.Second, Morph.Plural)   "ěaš-ete";
     Hashtbl.add verbTbl (Morph.Imperfect,  Morph.Third,  Morph.Plural)   "ěax-ǫ";
     Hashtbl.add verbTbl (Morph.Aorist,     Morph.First,  Morph.Singular) "(o)-xъ";
-    Hashtbl.add verbTbl (Morph.Aorist,     Morph.Second, Morph.Singular) "(e)-0";
-    Hashtbl.add verbTbl (Morph.Aorist,     Morph.Third,  Morph.Singular) "(e)-0";
+    Hashtbl.add verbTbl (Morph.Aorist,     Morph.Second, Morph.Singular) "(e)-ϵ";
+    Hashtbl.add verbTbl (Morph.Aorist,     Morph.Third,  Morph.Singular) "(e)-ϵ";
     Hashtbl.add verbTbl (Morph.Aorist,     Morph.First,  Morph.Dual)     "(o)-xově";
     Hashtbl.add verbTbl (Morph.Aorist,     Morph.Second, Morph.Dual)     "(o)-sta";
     Hashtbl.add verbTbl (Morph.Aorist,     Morph.Third,  Morph.Dual)     "(o)-ste";

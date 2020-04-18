@@ -67,4 +67,3 @@ type parse =
 val klassToString : klass -> string
 
 val classify : string -> klass
-val classifyTbl : string -> klass
